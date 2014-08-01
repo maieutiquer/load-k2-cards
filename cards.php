@@ -11,7 +11,6 @@ class plgContentCards extends JPlugin
   function onContentPrepare($context, &$article, &$params, $page = 0)
   {
     /*
-     * Plugin code goes here.
      * You can access database and application objects and parameters via $this->db,
      * $this->app and $this->params respectively
     */
@@ -23,17 +22,28 @@ class plgContentCards extends JPlugin
 		}
 
 		// Simple performance check to determine whether bot should process further
-		if (strpos($article->text, 'loadcards') === false)
+		if (strpos($article->text, '{loadcards}') === false)
 		{
 			return true;
 		}
 
-    // Check if the article contains {loadcards}
-		$loadCards = strpos($article->text, '{loadcards}');
+    $filesanddirs = scandir('images/cards');
+
+    $markup = '<img class="catalog-banner" src="images/catalog-eoy-banner.jpg" alt="catalog fin d\'année banner">';
+    $cardMarkupTamplate = '<div
+class="card">
+  <a href="images/cards/cardname" class="card-choose"><img src="images/cards/cardname" alt="cardname"></a>
+  <div class="card-title">
+    <span>cardname</span>
+  </div>
+</div>';
+    for ($i=0; $i < count($filesanddirs) - 2; $i++) {
+      $markup.= str_replace('cardname', $filesanddirs[$i+2], $cardMarkupTamplate);
+    }
 
     
 
-    
+    $article->text = str_replace('{loadcards}', $markup, $article->text);
 
     return true;
   }
