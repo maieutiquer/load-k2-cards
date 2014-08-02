@@ -32,13 +32,17 @@ class plgContentCards extends JPlugin
     $markup = '<img class="catalog-banner" src="images/catalog-eoy-banner.jpg" alt="catalog fin d\'année banner">';
     $cardMarkupTamplate = '<div
 class="card">
-  <a href="images/cards/cardname" class="card-choose"><img src="images/cards/cardname" alt="cardname"></a>
+  <a href="index.php?Itemid=119&carte=cardname" class="card-choose"><img src="images/cards/cardname.ext" alt="cardname"></a>
   <div class="card-title">
     <span>cardname</span>
   </div>
 </div>';
     for ($i=0; $i < count($filesanddirs) - 2; $i++) {
-      $markup.= str_replace('cardname', $filesanddirs[$i+2], $cardMarkupTamplate);
+      $filename = $filesanddirs[$i+2];
+      $withoutExt = preg_replace('/\\.[^.\\s]{3,4}$/', '', $filename);
+      $cardMarkup = str_replace('cardname.ext', $filename, $cardMarkupTamplate);
+      $cardMarkup = str_replace('cardname', $withoutExt, $cardMarkup);
+      $markup.= $cardMarkup;
     }
 
     
