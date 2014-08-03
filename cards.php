@@ -27,25 +27,27 @@ class plgContentCards extends JPlugin
 			return true;
 		}
 
-    $filesanddirs = scandir('images/cards');
+    $cardsDir = 'images/cards';
+    $filesanddirs = scandir($cardsDir);
+
 
     $markup = '<img class="catalog-banner" src="images/catalog-eoy-banner.png" alt="catalog fin d\'année banner">';
-    $cardMarkupTamplate = '<div
-class="card">
-  <a href="index.php?Itemid=119&carte=cardname" class="card-choose"><img src="images/cards/cardname.ext" alt="cardname"></a>
+    $cardMarkupTamplate = '<div class="card">
+  <a href="shop/cartes/personnalisation/?card=cardname" class="card-choose" data-card="cardname"><img src="images/cards/cardname.ext" alt="cardname"></a>
   <div class="card-title">
     <span>cardname</span>
   </div>
 </div>';
-    for ($i=0; $i < count($filesanddirs) - 2; $i++) {
+    for ($i=0; $i < count($filesanddirs) - 2; $i++)
+    {
       $filename = $filesanddirs[$i+2];
-      $withoutExt = preg_replace('/\\.[^.\\s]{3,4}$/', '', $filename);
-      $cardMarkup = str_replace('cardname.ext', $filename, $cardMarkupTamplate);
-      $cardMarkup = str_replace('cardname', $withoutExt, $cardMarkup);
-      $markup.= $cardMarkup;
+      if (!is_dir($cardsDir.'/'.$filename)) {
+        $withoutExt = preg_replace('/\\.[^.\\s]{3,4}$/', '', $filename);
+        $cardMarkup = str_replace('cardname.ext', $filename, $cardMarkupTamplate);
+        $cardMarkup = str_replace('cardname', $withoutExt, $cardMarkup);
+        $markup.= $cardMarkup;
+      }
     }
-
-    
 
     $article->text = str_replace('{loadcards}', $markup, $article->text);
 
