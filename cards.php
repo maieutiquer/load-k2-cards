@@ -29,7 +29,7 @@ class plgContentCards extends JPlugin
 
     $filesanddirs = scandir('images/cards');
 
-    $markup = '<img class="catalog-banner" src="images/catalog-eoy-banner.jpg" alt="catalog fin d\'année banner">';
+    $markup = '<img class="catalog-banner" src="images/catalog-eoy-banner.png" alt="catalog fin d\'année banner">';
     $cardMarkupTamplate = '<div
 class="card">
   <a href="index.php?Itemid=119&carte=cardname" class="card-choose"><img src="images/cards/cardname.ext" alt="cardname"></a>
