@@ -12,24 +12,4 @@
   <files>
     <filename plugin="cards">cards.php</filename>
   </files>
-  <config>
-    <fields name="params">
-      <fieldset name="basic">
-        <field name="cardstext" type="text"
-            default="50"
-            description="JFIELD_PLG_SEARCH_SEARCHLIMIT_DESC"
-            label="JFIELD_PLG_SEARCH_SEARCHLIMIT_LABEL"
-            size="5"
-        />
-        <field name="cardsradio" type="radio"
-            default="0"
-            description="JFIELD_PLG_SEARCH_ALL_DESC"
-            label="JFIELD_PLG_SEARCH_ALL_LABEL"
-        >
-          <option value="0">JOFF</option>
-          <option value="1">JON</option>
-        </field>
-      </fieldset>
-    </fields>
-  </config>
 </extension>
