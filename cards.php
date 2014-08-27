@@ -69,7 +69,7 @@ class plgContentCards extends JPlugin
       if (is_dir($artistsDir.'/'.$dirname))
       {
         $artistName = str_replace('_', ' ', $dirname);
-        $markup.= '<span id="'.$dirname.'"></span>';
+        $markup.= '<span class="artist-anchor" id="'.$dirname.'"></span>';
         $artistCardsDir = $artistsDir.'/'.$dirname.'/cards';
         getCards($artistCardsDir, $markup);
       }
